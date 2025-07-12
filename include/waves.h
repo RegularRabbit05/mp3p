@@ -11,10 +11,11 @@ typedef struct {
 	float ref = 0;
 	float alphaMul = 1.0f;
 	Vector3 buffer[WAVES_THREADS][bufSize][2];
+	Color baseColor = {45, 45, 45, 0};
 } Waves;
 
 void Waves_drawLine(Waves * thizz, Vector3 v[2]) {
-	unsigned char r = 30, g = 30, b = 30;
+	unsigned char r = thizz->baseColor.r, g = thizz->baseColor.g, b = thizz->baseColor.b;
 	const Vector2 vb = {v[0].x, v[0].y};
 	const Vector2 ve = {v[1].x, v[1].y};
 	const float cl = v[0].z*2;

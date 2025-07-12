@@ -106,10 +106,9 @@ void play_loadPlaylist(AppState &appState) {
 
 void play_makeTexture(PlayState * playState, const char* fileName) {
     int8_t c = 4;
-    uint8_t* specBuffer = (uint8_t*) memalign(16, PLAY_TEXTURE_SIZE*PLAY_TEXTURE_SIZE*8);
+    uint8_t specBuffer[PLAY_TEXTURE_SIZE*PLAY_TEXTURE_SIZE*4];
     playState->currentTexture = readPictureFromFileMP3(fileName, playState->parent, PLAY_TEXTURE_SIZE, specBuffer, &c);
     if (playState->currentTexture.id == 0 || c <= 2 || c > 4) {
-        free(specBuffer);
         return;
     }
     double start = GetTime();
@@ -122,7 +121,6 @@ void play_makeTexture(PlayState * playState, const char* fileName) {
     img.format = PIXELFORMAT_UNCOMPRESSED_R8G8B8A8;
 
     playState->currentSpecularTexture = LoadTextureFromImage(img);
-    free(specBuffer);
     TraceLog(LOG_INFO, "Made specular in %f", (GetTime()-start)*1000);
 }
 

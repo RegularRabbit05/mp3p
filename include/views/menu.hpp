@@ -168,7 +168,7 @@ void menu_init(AppState &appState) {
     }
     if (menuState->updateThreadId != 0) sceKernelStartThread(menuState->updateThreadId, sizeof(AppState), &appState);
     menuState->wasPressing = true;
-    Waves_setAlphaPercent(menuState->waves, 0);
+    Waves_setAlphaPercent(menuState->waves, 1);
 }
 
 void menu_destroy(AppState &appState) {
@@ -226,6 +226,18 @@ int menu_handle(AppState &appState) {
                 }
                 menu_loadCurrentFolder(appState, menuState);
             } else hasSelectedFile = true;
+        }
+        menuState->wasPressing = true;
+    } else if (appState.controller.start) {
+        if (!menuState->wasPressing) {
+            for (int i = 0; i < menuState->filesCount; i++) {
+                if (!menuState->fileNames[i].isFolder && isFilePlayable(menuState->fileNames[i].name)) {
+                    if (menuState->selectedFile != i) menuState->hasToDeleteTexture = true;
+                    menuState->selectedFile = i;
+                    hasSelectedFile = true;
+                    break;
+                }
+            }
         }
         menuState->wasPressing = true;
     } else if (appState.controller.o) {

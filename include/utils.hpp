@@ -329,15 +329,15 @@ inline Color colorEqualise(Color origin, Color target, int percent, bool alpha =
 }
 
 void convert_rgb_to_rgba_in_place(unsigned char *buffer, size_t width, size_t height) {
-    size_t total_pixels = width * height;
-    for (size_t i = total_pixels - 1; i >= 0; --i) {
-        size_t src_index = i * 3;
-        size_t dst_index = i * 4;
-        buffer[dst_index + 0] = buffer[src_index + 0];
-        buffer[dst_index + 1] = buffer[src_index + 1];
-        buffer[dst_index + 2] = buffer[src_index + 2];
-        buffer[dst_index + 3] = 255;
+    uint8_t tmpBuf[width * height * 4];
+    const size_t numPixels = width * height;
+    for (size_t i = 0; i < numPixels; ++i) {
+        tmpBuf[4 * i + 0] = buffer[3 * i + 0];
+        tmpBuf[4 * i + 1] = buffer[3 * i + 1];
+        tmpBuf[4 * i + 2] = buffer[3 * i + 2];
+        tmpBuf[4 * i + 3] = 255;
     }
+    memcpy(buffer, tmpBuf, numPixels * 4);
 }
 
 void flip_fade_texture(uint8_t *pixels, int width, int height, int bytes_per_pixel, AppState * appState) {
