@@ -60,8 +60,6 @@ int main() {
         int retVal = RETURN_STATE_CONTINUE;
         BeginDrawing();
         UpdateControls(&appState.controller);
-        if (appState.controller.right) appState.jpegWorking = true;
-        if (appState.controller.left) appState.jpegWorking = false;
         ClearBackground(appState.bgColor);
         switch (appState.currentState) {
             case STATE_MENU: {
