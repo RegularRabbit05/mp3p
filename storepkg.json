@@ -1,0 +1,26 @@
+{
+    "pkgver": 1,
+    "type": "app",
+
+    "name": "(M)P3P",
+    "author": "RegularRabbit05",
+    "description": "3D MP3 player",
+    "tag": "app",
+    "link": "https://github.com/RegularRabbit05/mp3p",
+    "image": "githubusercontent:StoreStation/previews/refs/heads/main/mp3ppreview.jpg",
+    "version": "1.1",
+    "download": {
+        "remote": "github:RegularRabbit05/mp3p/releases/latest/download/mp3p.zip",
+        "compressed": true,
+        "targets": [
+            { "file": "app/EBOOT.PBP", "target": "ms0:/PSP/GAME/MP3P/EBOOT.PBP" },
+            { "file": "app/assets/cover.mp3", "target": "ms0:/PSP/GAME/MP3P/assets/cover.mp3" },
+            { "file": "app/assets/credits.txt", "target": "ms0:/PSP/GAME/MP3P/assets/credits.txt" },
+            { "file": "app/assets/disk.glb", "target": "ms0:/PSP/GAME/MP3P/assets/disk.glb" },
+            { "file": "app/assets/file.glb", "target": "ms0:/PSP/GAME/MP3P/assets/file.glb" },
+            { "file": "app/assets/folder.glb", "target": "ms0:/PSP/GAME/MP3P/assets/folder.glb" },
+            { "file": "app/assets/opensans.ttf", "target": "ms0:/PSP/GAME/MP3P/assets/opensans.ttf" },
+            { "file": "app/assets/player.glb", "target": "ms0:/PSP/GAME/MP3P/assets/player.glb" }
+        ]
+    }
+}
